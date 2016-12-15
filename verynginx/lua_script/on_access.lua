@@ -7,6 +7,7 @@ local backend_static = require "backend_static"
 local backend_proxy = require "backend_proxy"
 local basic_auth=require "basic_auth"
 local jwt=require "jwt"
+local correlation_id=require "correlation_id"
 
 if ngx.var.vn_exec_flag and ngx.var.vn_exec_flag ~= '' then
     return
@@ -20,6 +21,7 @@ frequency_limit.filter()
 router.filter()
 basic_auth.filter()
 jwt.filter()
+correlation_id.filter()
 
 
 backend_static.filter()
